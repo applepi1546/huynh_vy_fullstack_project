@@ -1,11 +1,11 @@
 /* Website template by freewebsitetemplates.com */
 body {
-	background: #ffb744 url(../images/bg-body.jpg) repeat left bottom;
+	background: #ffb744 url(../../app_admin/src/assets/images/bg-body.jpg) repeat left bottom;
 	font-family: "Times New Roman", Times, serif;
 	margin: 0;
 }
 #background {
-	background: url(../images/bg-pattern.jpg) repeat-x center top;
+	background: url(../../app_admin/src/assets/images/bg-pattern.jpg) repeat-x center top;
 	min-height: 1318px;
 }
 #page {
@@ -17,15 +17,15 @@ img {
 }
 /*------------------------------ Sprites ------------------------------*/
 #navigation li, #navigation li a:hover, #navigation li.selected a {
-	background-image: url(../images/bg-menu.png);
+	background-image: url(../../app_admin/src/assets/images/bg-menu.png);
 	background-repeat: repeat-x;
 }
 #contents div.box, #contents div.box > div, #contents div.body {
-	background-image: url(../images/content-box.png);
+	background-image: url(../../app_admin/src/assets/images/content-box.png);
 	background-repeat: no-repeat;
 }
 #main div.box, #main div.box > div, #main div.box > div > div {
-	background-image: url(../images/bg-box.png);
+	background-image: url(../../app_admin/src/assets/images/bg-box.png);
 	background-repeat: no-repeat;
 }
 /*------------------------------ HEADER ------------------------------*/
@@ -41,7 +41,7 @@ img {
 }
 /** Navigation **/
 #navigation {
-	background: url(../images/bg-navigation.png) no-repeat;
+	background: url(../../app_admin/src/assets/images/bg-navigation.png) no-repeat;
 	clear: both;
 	height: 50px;
 	width: 860px;
@@ -145,7 +145,7 @@ img {
 }
 /** Adbox **/
 #adbox {
-	background: url(../images/bg-adbox.png) no-repeat left top;
+	background: url(../../app_admin/src/assets/images/bg-adbox.png) no-repeat left top;
 	width: 852px;
 	margin: 0 auto;
 	padding: 4px 5px 18px;
@@ -300,7 +300,7 @@ hr {
 	position: relative;
 }
 #foods li > div.infos p {
-	background: url(../images/bg-foodDetail.png) repeat;
+	background: url(../../app_admin/src/assets/images/bg-foodDetail.png) repeat;
 	color: #316e66;
 	display: none;
 	height: 60px;
@@ -315,7 +315,7 @@ hr {
 	font: 22px/22px "Times New Roman", Times, serif;
 }
 #foods li > div.infos:hover span.cover {
-	background: url(../images/bg-foodInfos.png) repeat;
+	background: url(../../app_admin/src/assets/images/bg-foodInfos.png) repeat;
 	display: inline-block;
 	height: 100%;
 	width: 100%;
@@ -439,7 +439,7 @@ hr {
 	resize: none;
 }
 #contact input.btn {
-	background: url(../images/btn-send.png) no-repeat -70px 0;
+	background: url(../../app_admin/src/assets/images/btn-send.png) no-repeat -70px 0;
 	cursor: pointer;
 	height: 26px;
 	width: 60px;
@@ -512,7 +512,7 @@ hr {
 	margin: 12px 0 0;
 }
 #connect a {
-	background: url(../images/icons.png) no-repeat;
+	background: url(../../app_admin/src/assets/images/icons.png) no-repeat;
 	display: inline-block;
 	height: 23px;
 	width: 23px;
