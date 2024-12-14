@@ -1,21 +1,39 @@
-const express = require('express'); // Express app
-const router = express.Router(); // Router logic
+const express = require('express');
+const router = express.Router();
+const {expressjwt: jwt} = require('express-jwt');
 
-// Location to import controllers that we route
+const auth = jwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: "payload",
+    algorithms: ["HS256"],
+});
 
-const tripsController = require('../controllers/trips');
+const authController = require('../controllers/authentication');
+const travelController = require('../controllers/trips');
 
-// Define route for our trips endpoint
+// API routes
+// Route to authenticate a user
+router
+    .route('/login')
+    .post(authController.login);
 
+// Route to register a new user
+router
+    .route('/register')
+    .post(authController.register);
+
+
+// Route to get a list of all trips
 router
     .route('/trips')
-    .get(tripsController.tripsList) // GET method routes tripsList
-    .post(tripsController.tripsAddTrip); // POST method adds a trip
+    .get(travelController.tripList)
+    .post(auth, travelController.tripsAddTrip);
 
+// Route to find and return a single trip by trip code
 router
-    .route('/trips/:tripsCode')
-    .get(tripsController.tripsFindByCode)
-    .put(tripsController.tripsUpdateTrip)
-
+    .route('/trips/:tripCode')
+    .get(travelController.tripsFindCode)
+    .put(auth, travelController.tripsUpdateTrip)
+    .delete(auth, travelController.tripsDeleteTrip);
 
 module.exports = router;

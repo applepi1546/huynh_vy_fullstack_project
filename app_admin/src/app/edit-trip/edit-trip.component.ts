@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
-import { Router } from "@angular/router";
 import { TripDataService } from '../services/trip-data.service';
 import { Trip } from '../models/trip';
 
@@ -14,20 +14,19 @@ import { Trip } from '../models/trip';
 })
 
 export class EditTripComponent implements OnInit {
-  addForm!: FormGroup;
-
   public editForm!: FormGroup;
   trip!: Trip;
   submitted = false;
-  message: string = '';
+  message : string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private tripDataService: TripDataService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit() : void {
+
     // Retrieve stashed trip ID
     let tripCode = localStorage.getItem("tripCode");
     if (!tripCode) {
@@ -52,17 +51,16 @@ export class EditTripComponent implements OnInit {
       .subscribe({
         next: (value: any) => {
           this.trip = value;
-          // Populate our record into the form
 
-          //  Playing with date format
-          console.log("Value before patch: " + JSON.stringify(value[0]))
-          // Remove time from Start, so the date picker is happy.
-          value[0].start = value[0].start.split("T")[0];
-          this.editForm.patchValue(value[0]);
           if (!value) {
             this.message = 'No Trip Retrieved!';
-          }
-          else {
+          } else {
+            // Fix date string format
+            value[0]["start"] = value[0]["start"].split('T')[0];
+
+            // Populate our record into the form
+            this.editForm.patchValue(value[0]);
+
             this.message = 'Trip: ' + tripCode + ' retrieved';
           }
           console.log(this.message);
@@ -72,21 +70,28 @@ export class EditTripComponent implements OnInit {
         }
       })
   }
+
   public onSubmit() {
+    console.log("Submit button pressed");
     this.submitted = true;
     if (this.editForm.valid) {
       this.tripDataService.updateTrip(this.editForm.value)
         .subscribe({
           next: (value: any) => {
-            console.log(value);
-            this.router.navigate(['']);
+            console.log('Updated trip:', value);
+            this.router.navigate(['list-trips']);
           },
           error: (error: any) => {
-            console.log('Error: ' + error);
+            // Log the error as an object
+            console.error('Error updating trip:', error);
+
+            // Optionally, show more structured error details to the user
+            alert('Error updating trip: ' + JSON.stringify(error, null, 2));
           }
         })
     }
   }
+
   // get the form short name to access the form fields
   get f() { return this.editForm.controls; }
 }
